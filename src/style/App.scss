@@ -1,0 +1,140 @@
+@import 'reset';
+@import 'vars';
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;600;700&display=swap');
+
+html {
+    min-width: 100%;
+    min-height: 100%;
+    font-family: 'Barlow Semi Condensed', sans-serif;
+}
+body {
+    background: $clr-bg;
+    background-repeat: no-repeat;
+    padding: 30px;
+    user-select: none;
+    min-height: 100vh;
+    position: relative;
+}
+.header {
+    max-width: 700px;
+    margin: 0 auto 100px auto;
+    border: .3rem solid $clr-tpWhite;
+    border-radius: .5rem;
+    padding: .8rem;
+    display: flex;
+    justify-content: space-between;
+    &__title {
+        display: flex;
+        align-items: center;
+        img{
+            width: 60%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+    &__score {
+        background-color: white;
+        border-radius: .5rem;
+        padding: .5rem 1rem;
+        p:first-child {
+            color: $clr-scoretext;
+            text-align: center;
+            font-size: .8rem;
+            font-weight: 600;
+        }
+        p:last-child {
+            display: flex;
+            justify-content: center;
+            color: $clr-darktext;
+            font-size: 3rem;
+            font-weight: 700;
+        }
+    }
+}
+.main {
+    &__triangle {
+        width: calc(100% - 130px);
+        max-width: 400px;
+        aspect-ratio: 1;
+        margin: 0 auto 120px auto;
+        background-image: url('../images/bg-triangle.svg');
+        background-repeat: no-repeat;
+        background-position-x: center;
+        background-position-y: center;
+        background-size: contain;
+        position: relative;
+        &__circle {
+            height: $circle-size;
+            width: $circle-size;
+            @media screen and (min-width: 500px){
+                height: 150px;
+                width: 150px;
+            }
+            border-radius: 50%;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            cursor: pointer;
+            img {
+                width: 70%;
+                height: 70%;
+                object-fit: contain;
+            }
+            &.c1 {
+                top: -($circle-size / 2);
+                left: -($circle-size / 2);
+                box-shadow:
+                    inset 0 5px 0 hsla(0, 0%, 0%, .3),
+                    0 0 0 1rem $clr-paper,
+                    0 5px 0 1rem $clr-paperDark;
+            }
+            &.c2 {
+                top: -($circle-size / 2);
+                right: -($circle-size / 2);
+                box-shadow:
+                    inset 0 5px 0 hsla(0, 0%, 0%, .3),
+                    0 0 0 1rem $clr-scissors,
+                    0 5px 0 1rem $clr-scissorsDark;
+            }
+            &.c3 {
+                bottom: -($circle-size / 2);
+                right: 50%;
+                transform: translateX(50%);
+                box-shadow:
+                    inset 0 5px 0 hsla(0, 0%, 0%, .3),
+                    0 0 0 1rem $clr-rock,
+                    0 5px 0 1rem $clr-rockDark;
+            }
+            &:not(:last-child):active {
+                transform: translateY(3px);
+                -webkit-tap-highlight-color: transparent;
+            }
+            &:last-child:active {
+                transform: translateX(50%) translateY(3px);
+                -webkit-tap-highlight-color: transparent;
+            }
+        }
+    }
+    &__rules {
+        width: max-content;
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        button {
+            border: .3rem solid $clr-tpWhite;
+            border-radius: .5rem;
+            padding: .5rem 1rem;
+            background: none;
+            cursor: pointer;
+            color: white;
+            font-weight: 600;
+            &:active {
+                transform: translateY(3px);
+                -webkit-tap-highlight-color: transparent;
+            }
+        }
+    }
+}
