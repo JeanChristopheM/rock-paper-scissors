@@ -78,7 +78,7 @@ body {
 
 .header {
   max-width: 700px;
-  margin: 0 auto 100px auto;
+  margin: 0 auto;
   border: 0.3rem solid rgba(255, 255, 255, 0.3);
   border-radius: .5rem;
   padding: .8rem;
@@ -131,11 +131,15 @@ body {
   font-weight: 700;
 }
 
+.main {
+  position: relative;
+}
+
 .main__triangle {
   width: calc(100% - 130px);
   max-width: 400px;
   aspect-ratio: 1;
-  margin: 0 auto 120px auto;
+  margin: 83.33333px auto 140px auto;
   background-image: url("../images/bg-triangle.svg");
   background-repeat: no-repeat;
   background-position-x: center;
@@ -144,7 +148,7 @@ body {
   position: relative;
 }
 
-.main__triangle__circle {
+.circle {
   height: 100px;
   width: 100px;
   border-radius: 50%;
@@ -160,37 +164,40 @@ body {
           align-items: center;
   background-color: white;
   cursor: pointer;
+  -webkit-box-shadow: inset 0 5px 0 rgba(0, 0, 0, 0.3), 0 0 0 1rem white, 0 5px 0 1rem rgba(255, 255, 255, 0.3);
+          box-shadow: inset 0 5px 0 rgba(0, 0, 0, 0.3), 0 0 0 1rem white, 0 5px 0 1rem rgba(255, 255, 255, 0.3);
 }
 
 @media screen and (min-width: 500px) {
-  .main__triangle__circle {
+  .circle {
     height: 150px;
     width: 150px;
   }
 }
 
-.main__triangle__circle img {
+.circle img {
   width: 70%;
   height: 70%;
   -o-object-fit: contain;
      object-fit: contain;
+  pointer-events: none;
 }
 
-.main__triangle__circle.c1 {
+.circle.c1 {
   top: -50px;
   left: -50px;
   -webkit-box-shadow: inset 0 5px 0 rgba(0, 0, 0, 0.3), 0 0 0 1rem #4865f4, 0 5px 0 1rem #1a3adb;
           box-shadow: inset 0 5px 0 rgba(0, 0, 0, 0.3), 0 0 0 1rem #4865f4, 0 5px 0 1rem #1a3adb;
 }
 
-.main__triangle__circle.c2 {
+.circle.c2 {
   top: -50px;
   right: -50px;
   -webkit-box-shadow: inset 0 5px 0 rgba(0, 0, 0, 0.3), 0 0 0 1rem #ec9e0e, 0 5px 0 1rem #724f0d;
           box-shadow: inset 0 5px 0 rgba(0, 0, 0, 0.3), 0 0 0 1rem #ec9e0e, 0 5px 0 1rem #724f0d;
 }
 
-.main__triangle__circle.c3 {
+.circle.c3 {
   bottom: -50px;
   right: 50%;
   -webkit-transform: translateX(50%);
@@ -199,19 +206,108 @@ body {
           box-shadow: inset 0 5px 0 rgba(0, 0, 0, 0.3), 0 0 0 1rem #dc2e4e, 0 5px 0 1rem #a4283f;
 }
 
-.main__triangle__circle:not(:last-child):active {
+.circle.empty {
+  -webkit-animation: queueAnswer .5s linear 0s infinite alternate;
+          animation: queueAnswer .5s linear 0s infinite alternate;
+}
+
+.circle:not(:last-child):active {
   -webkit-transform: translateY(3px);
           transform: translateY(3px);
   -webkit-tap-highlight-color: transparent;
 }
 
-.main__triangle__circle:last-child:active {
+.circle:last-child:active {
   -webkit-transform: translateX(50%) translateY(3px);
           transform: translateX(50%) translateY(3px);
   -webkit-tap-highlight-color: transparent;
 }
 
-.main__rules {
+@-webkit-keyframes queueAnswer {
+  0% {
+    -webkit-box-shadow: inset 0 5px 0 rgba(0, 0, 0, 0.3), 0 0 0 1rem #4865f4, 0 5px 0 1rem #1a3adb;
+            box-shadow: inset 0 5px 0 rgba(0, 0, 0, 0.3), 0 0 0 1rem #4865f4, 0 5px 0 1rem #1a3adb;
+    background-image: url("../images/icon-paper.svg");
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  50% {
+    -webkit-box-shadow: inset 0 5px 0 rgba(0, 0, 0, 0.3), 0 0 0 1rem #ec9e0e, 0 5px 0 1rem #724f0d;
+            box-shadow: inset 0 5px 0 rgba(0, 0, 0, 0.3), 0 0 0 1rem #ec9e0e, 0 5px 0 1rem #724f0d;
+    background-image: url("../images/icon-scissors.svg");
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  100% {
+    -webkit-box-shadow: inset 0 5px 0 rgba(0, 0, 0, 0.3), 0 0 0 1rem #dc2e4e, 0 5px 0 1rem #a4283f;
+            box-shadow: inset 0 5px 0 rgba(0, 0, 0, 0.3), 0 0 0 1rem #dc2e4e, 0 5px 0 1rem #a4283f;
+    background-image: url("../images/icon-rock.svg");
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+
+@keyframes queueAnswer {
+  0% {
+    -webkit-box-shadow: inset 0 5px 0 rgba(0, 0, 0, 0.3), 0 0 0 1rem #4865f4, 0 5px 0 1rem #1a3adb;
+            box-shadow: inset 0 5px 0 rgba(0, 0, 0, 0.3), 0 0 0 1rem #4865f4, 0 5px 0 1rem #1a3adb;
+    background-image: url("../images/icon-paper.svg");
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  50% {
+    -webkit-box-shadow: inset 0 5px 0 rgba(0, 0, 0, 0.3), 0 0 0 1rem #ec9e0e, 0 5px 0 1rem #724f0d;
+            box-shadow: inset 0 5px 0 rgba(0, 0, 0, 0.3), 0 0 0 1rem #ec9e0e, 0 5px 0 1rem #724f0d;
+    background-image: url("../images/icon-scissors.svg");
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  100% {
+    -webkit-box-shadow: inset 0 5px 0 rgba(0, 0, 0, 0.3), 0 0 0 1rem #dc2e4e, 0 5px 0 1rem #a4283f;
+            box-shadow: inset 0 5px 0 rgba(0, 0, 0, 0.3), 0 0 0 1rem #dc2e4e, 0 5px 0 1rem #a4283f;
+    background-image: url("../images/icon-rock.svg");
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+
+.fight,
+.result {
+  padding: 50px 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  max-width: calc(700px - 2rem);
+  margin: 0 auto;
+}
+
+.fight .circle,
+.result .circle {
+  position: relative;
+  -webkit-transform: unset;
+          transform: unset;
+  top: unset;
+  bottom: unset;
+  left: unset;
+  right: unset;
+}
+
+.fight .circle:active,
+.result .circle:active {
+  -webkit-transform: unset;
+          transform: unset;
+}
+
+footer {
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
@@ -222,7 +318,7 @@ body {
           transform: translateX(-50%);
 }
 
-.main__rules button {
+footer button {
   border: 0.3rem solid rgba(255, 255, 255, 0.3);
   border-radius: .5rem;
   padding: .5rem 1rem;
@@ -232,7 +328,7 @@ body {
   font-weight: 600;
 }
 
-.main__rules button:active {
+footer button:active {
   -webkit-transform: translateY(3px);
           transform: translateY(3px);
   -webkit-tap-highlight-color: transparent;
