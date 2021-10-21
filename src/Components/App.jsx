@@ -14,7 +14,8 @@ class App extends Component {
       {name: 'results', status: false}
     ],
     score: 0,
-    buttonClicked:0
+    buttonClicked:0,
+    pcPick: 9
   }
   ruleHandler = () => {
     this.setState({score: this.state.score + 1});
@@ -28,7 +29,19 @@ class App extends Component {
     layouts[1].status = true;
     this.setState({layouts: layouts});
   }
-
+  makePcPick = () => {
+    const pick = Math.floor(Math.random() * 3);
+    switch (pick) {
+      case 0:
+        this.setState({pcPick: 'one'}, () => {console.log(this.state.pcPick)});
+        break;
+      case 1: 
+        this.setState({pcPick: 'two'}, () => {console.log(this.state.pcPick)});
+        break;
+      default: 
+        this.setState({pcPick: 'three'}, () => {console.log(this.state.pcPick)});
+    }
+  }
 
   render() {
     const { layouts: [{status: InitialStatus},{status: pickedStatus}, {status: resultsStatus}] } = this.state;
@@ -40,12 +53,12 @@ class App extends Component {
           <Main buttonHandler={this.buttonHandler} /> 
         }
         {pickedStatus &&
-          <Fight userPicked={this.state.buttonClicked} />
+          <Fight userPicked={this.state.buttonClicked} makePcPick={this.makePcPick} pcPick={this.state.pcPick} />
         }
         {resultsStatus && 
           <Result />
         }
-        <Footer ruleHandler={this.ruleHandler} />
+        <Footer ruleHandler={this.ruleHandler} pcPick={this.state.pcPick} />
       </div>
     );
   }

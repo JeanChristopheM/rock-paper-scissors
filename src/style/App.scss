@@ -153,6 +153,7 @@ body {
     padding: $circle-size/2 1rem;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     max-width: calc(700px - 2rem);
     margin: 0 auto;
     .circle {
@@ -165,6 +166,10 @@ body {
         &:active {
             transform: unset;
         }
+    }
+    &__control {
+        flex: 1 0 100%;
+        margin-top: $circle-size/2;
     }
 }
 

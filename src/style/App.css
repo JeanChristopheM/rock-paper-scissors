@@ -286,6 +286,8 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   max-width: calc(700px - 2rem);
   margin: 0 auto;
 }
@@ -305,6 +307,14 @@ body {
 .result .circle:active {
   -webkit-transform: unset;
           transform: unset;
+}
+
+.fight__control,
+.result__control {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 100%;
+          flex: 1 0 100%;
+  margin-top: 50px;
 }
 
 footer {
