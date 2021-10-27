@@ -3,10 +3,11 @@ import Symbol from './Symbol';
 
 class Fight extends Component {
     render() { 
-        const { pcPick } = this.props;
+        const { pcPick, switchToResult } = this.props;
         let letsgo = false;
         if (pcPick === 'one' || pcPick === 'two' || pcPick === 'three') {
             letsgo = true;
+            switchToResult();
         } else {
             setTimeout(
                 () => {this.props.makePcPick()},3000
